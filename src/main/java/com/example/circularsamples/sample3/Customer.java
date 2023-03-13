@@ -1,16 +1,18 @@
 package com.example.circularsamples.sample3;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Customer {
 
+    @Autowired
     private Account account;
 
-    @Autowired
-    public void setAccount(Account account) {
-        this.account = account;
+    @PostConstruct
+    public void init() {
+        account.setCustomer(this);
     }
 
     public Account getAccount() {
